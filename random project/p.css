@@ -1,0 +1,10 @@
+body{
+    background-color: aqua;
+}
+.maintitle{
+    text-align: center;
+    color: black;
+}
+p{
+    font-size: 30px;    
+}
