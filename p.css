@@ -1,10 +1,398 @@
-body{
-    background-color: aqua;
+:root {
+    color-scheme: dark;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --cream: #fff7e9;
+    --muted: #c9b9c9;
+    --gold: #f0c77b;
+    --rose: #e99ba8;
 }
-.maintitle{
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--cream);
+    background: #201724;
+}
+
+button {
+    font: inherit;
+}
+
+.game-shell {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    overflow: hidden;
+    place-items: center;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 50% 42%, rgba(116, 68, 91, .3), transparent 47%),
+        linear-gradient(135deg, #201724 0%, #2b1d2e 52%, #1c1827 100%);
+}
+
+.game-shell::before,
+.game-shell::after {
+    position: absolute;
+    z-index: -1;
+    width: 440px;
+    height: 440px;
+    border: 1px solid rgba(240, 199, 123, .1);
+    border-radius: 50%;
+    content: "";
+}
+
+.game-shell::before {
+    width: 620px;
+    height: 620px;
+}
+
+.game-shell::after {
+    width: 800px;
+    height: 800px;
+    border-color: rgba(240, 199, 123, .055);
+}
+
+.ambient {
+    position: absolute;
+    z-index: -1;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .25;
+    pointer-events: none;
+}
+
+.ambient-one {
+    top: 8%;
+    right: 12%;
+    background: #9c536f;
+}
+
+.ambient-two {
+    bottom: 5%;
+    left: 10%;
+    background: #8d7241;
+}
+
+.creator {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    color: rgba(255, 247, 233, .46);
+    font-family: Georgia, serif;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+}
+
+.menu-screen {
+    position: relative;
+    width: min(100% - 40px, 590px);
+    animation: rise-in .8s cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.menu-card,
+.welcome-card {
+    position: relative;
+    padding: 52px 56px 36px;
+    overflow: hidden;
+    border: 1px solid rgba(240, 199, 123, .24);
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(55, 39, 57, .96), rgba(38, 29, 43, .96));
+    box-shadow: 0 28px 90px rgba(8, 5, 12, .48), inset 0 1px rgba(255, 255, 255, .06);
     text-align: center;
-    color: black;
 }
-p{
-    font-size: 30px;    
+
+.menu-card::before,
+.welcome-card::before {
+    position: absolute;
+    top: 0;
+    right: 15%;
+    left: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(240, 199, 123, .8), transparent);
+    content: "";
+}
+
+.game-mark {
+    position: relative;
+    display: grid;
+    width: 78px;
+    height: 78px;
+    margin: 0 auto 22px;
+    place-items: center;
+    border: 1px solid rgba(240, 199, 123, .48);
+    border-radius: 50%;
+    color: var(--gold);
+    background: rgba(240, 199, 123, .07);
+    box-shadow: 0 0 35px rgba(240, 199, 123, .08);
+}
+
+.mark-star {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: #fff0bd;
+    font-size: 17px;
+}
+
+.mark-flower {
+    color: var(--rose);
+    font-size: 41px;
+}
+
+.eyebrow {
+    margin: 0 0 13px;
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: var(--cream);
+    font-size: clamp(32px, 7vw, 48px);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+h1 span {
+    color: var(--rose);
+    white-space: nowrap;
+}
+
+.intro {
+    margin-bottom: 32px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.menu-actions {
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+}
+
+.button {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    border: 0;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button:focus-visible,
+.dialog-close:focus-visible {
+    outline: 3px solid #fff1c8;
+    outline-offset: 4px;
+}
+
+.button-primary {
+    width: min(100%, 290px);
+    padding: 0 22px;
+    color: #302333;
+    background: linear-gradient(110deg, #f3d28f, #e8b96d);
+    box-shadow: 0 9px 26px rgba(225, 180, 103, .2);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.button-primary:hover {
+    box-shadow: 0 12px 32px rgba(225, 180, 103, .32);
+}
+
+.button-icon {
+    font-size: 20px;
+    transition: transform .2s ease;
+}
+
+.button-primary:hover .button-icon {
+    transform: translateX(-3px);
+}
+
+.button-quiet {
+    min-height: 40px;
+    padding: 0 18px;
+    color: var(--muted);
+    background: transparent;
+    font-size: 14px;
+}
+
+.button-quiet:hover {
+    color: var(--cream);
+    background: rgba(255, 255, 255, .06);
+}
+
+.menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    margin-top: 35px;
+    color: rgba(255, 247, 233, .45);
+    font-size: 11px;
+}
+
+.footer-line {
+    width: 35px;
+    height: 1px;
+    background: rgba(240, 199, 123, .3);
+}
+
+.side-note {
+    position: absolute;
+    top: 50%;
+    left: -47px;
+    color: rgba(240, 199, 123, .56);
+    font-size: 11px;
+    letter-spacing: 1px;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+}
+
+.welcome-screen {
+    width: min(100% - 40px, 590px);
+    animation: rise-in .55s ease both;
+}
+
+.welcome-card {
+    padding: 58px 42px 48px;
+}
+
+.welcome-sparkle {
+    display: block;
+    margin-bottom: 17px;
+    color: var(--gold);
+    font-size: 38px;
+}
+
+.welcome-card h2,
+.about-dialog h2 {
+    margin-bottom: 15px;
+    color: var(--cream);
+    font-size: clamp(25px, 5vw, 34px);
+}
+
+.welcome-card > p:not(.eyebrow),
+.about-dialog > p:last-child {
+    margin-bottom: 27px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.about-dialog {
+    position: fixed;
+    width: min(100% - 36px, 430px);
+    padding: 38px 34px 32px;
+    border: 1px solid rgba(240, 199, 123, .3);
+    border-radius: 24px;
+    color: var(--cream);
+    background: #302438;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, .55);
+    text-align: center;
+}
+
+.about-dialog::backdrop {
+    background: rgba(13, 9, 17, .72);
+    backdrop-filter: blur(5px);
+}
+
+.dialog-close {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    color: var(--cream);
+    background: rgba(255, 255, 255, .08);
+    cursor: pointer;
+    font-size: 23px;
+    line-height: 1;
+}
+
+.dialog-flower {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--rose);
+    font-size: 42px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .creator {
+        top: 15px;
+        right: 18px;
+        transform: none;
+        writing-mode: horizontal-tb;
+    }
+
+    .menu-screen,
+    .welcome-screen {
+        width: min(100% - 34px, 450px);
+    }
+
+    .menu-card {
+        padding: 42px 24px 29px;
+    }
+
+    .side-note {
+        display: none;
+    }
+
+    .welcome-card {
+        padding: 48px 25px 38px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
 }
