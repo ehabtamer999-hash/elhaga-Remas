@@ -1,15 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remas</title>
-  <link rel="stylesheet" href="p.css">
+    <meta name="theme-color" content="#201724">
+    <meta name="description" content="ابدئي مغامرة لعبة الحاجة ريماس">
+    <title>لعبة الحاجة ريماس</title>
+    <link rel="stylesheet" href="p.css">
 </head>
 <body>
-    <h1 class="maintitle">موقع الحاجه ريماس</h1>
-    <p>this website is owned by "الحاجه ريماس" and its a small appriction for her and her help for me , maybe new things will be added to this website in the future and i hope you enjoy it"
-    </p>
+    <main class="game-shell">
+        <div class="ambient ambient-one" aria-hidden="true"></div>
+        <div class="ambient ambient-two" aria-hidden="true"></div>
+
+        <span class="creator">created by ehab</span>
+
+        <section class="menu-screen" id="menu-screen" aria-labelledby="game-title">
+            <div class="menu-card">
+                <div class="game-mark" aria-hidden="true">
+                    <span class="mark-star">✦</span>
+                    <span class="mark-flower">✿</span>
+                </div>
+
+                <p class="eyebrow">حكاية صغيرة... ومغامرة كبيرة</p>
+                <h1 id="game-title">لعبة الحاجة <span>ريماس</span></h1>
+                <p class="intro">جاهزة لمغامرة مليانة فرحة وحكايات حلوة؟</p>
+
+                <div class="menu-actions">
+                    <button class="button button-primary" id="start-button" type="button">
+                        <span>ابدأي المغامرة</span>
+                        <span class="button-icon" aria-hidden="true">←</span>
+                    </button>
+                    <button class="button button-quiet" id="about-button" type="button">
+                        عن اللعبة
+                    </button>
+                </div>
+
+                <div class="menu-footer">
+                    <span class="footer-line"></span>
+                    <span>صُنعت بكل حب</span>
+                    <span class="footer-line"></span>
+                </div>
+            </div>
+
+            <div class="side-note" aria-hidden="true">
+                <span>أهلاً بيكي في عالم ريماس</span>
+            </div>
+        </section>
+
+        <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-title" hidden>
+            <div class="welcome-card">
+                <span class="welcome-sparkle" aria-hidden="true">✦</span>
+                <p class="eyebrow">المغامرة بدأت</p>
+                <h2 id="welcome-title" tabindex="-1">أهلاً بيكي يا حاجة ريماس!</h2>
+                <p>نورتي لعبتك! جهّزي نفسك لوقت لطيف ومليان مفاجآت.</p>
+                <button class="button button-primary" id="back-button" type="button">
+                    <span>العودة للقائمة</span>
+                    <span class="button-icon" aria-hidden="true">←</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="about-dialog" id="about-dialog" aria-labelledby="about-title">
+        <button class="dialog-close" id="close-dialog" type="button" aria-label="إغلاق">×</button>
+        <span class="dialog-flower" aria-hidden="true">✿</span>
+        <p class="eyebrow">حكاية اللعبة</p>
+        <h2 id="about-title">للحاجة ريماس</h2>
+        <p>لعبة صغيرة معمولة بحب عشان تفرّح الحاجة ريماس وتقولها: شكراً على كل حاجة حلوة.</p>
+    </dialog>
+
     <script src="p.js"></script>
 </body>
 </html>
