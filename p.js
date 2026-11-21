@@ -22,3 +22,10 @@ document.querySelector("#close-dialog").addEventListener("click", () => {
     aboutDialog.close();
     document.querySelector("#about-button").focus();
 });
+
+aboutDialog.addEventListener("click", (event) => {
+    if (event.target === aboutDialog) {
+        aboutDialog.close();
+        document.querySelector("#about-button").focus();
+    }
+});
